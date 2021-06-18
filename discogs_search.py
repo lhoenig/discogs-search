@@ -51,7 +51,7 @@ if __name__ == '__main__':
         results_list.sort(key=lambda l: l['year'])
         for r in results_list:
             print(
-                f'{", ".join(a["name"] for a in r["artists"])} - {r["title"]} ({r["year"]}) [https://discogs.com/release/{r["id"]}/]')
+                f'{", ".join(a["name"] for a in r["artists"])} - {r["title"]} ({r["year"]}) [https://discogs.com/master/{r["id"]}]')
     elif args.outf == 'links':
         pass
     elif args.outf == 'none':
