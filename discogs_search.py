@@ -47,9 +47,11 @@ if __name__ == '__main__':
         with open(fn, 'w') as f:
             json.dump(results, f)
     elif args.outf == 'short':
-        for k, v in results.items():
+        results_list = [{'id': k, **v} for k, v in results.items()]
+        results_list.sort(key=lambda l: l['year'])
+        for r in results_list:
             print(
-                f'{", ".join(a["name"] for a in v["artists"])} - {v["title"]} ({v["year"]})')
+                f'{", ".join(a["name"] for a in r["artists"])} - {r["title"]} ({r["year"]}) [https://discogs.com/release/{r["id"]}/]')
     elif args.outf == 'links':
         pass
     elif args.outf == 'none':
