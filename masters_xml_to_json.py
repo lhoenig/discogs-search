@@ -7,10 +7,10 @@ import json
 def masters_xml_to_obj(root):
     masters = {}
     for master in root:
-        mid = master.attrib['id']
+        mid = int(master.attrib['id'])
         masters[mid] = {}
-        masters[mid]['main_release'] = master.find('main_release').text
-        masters[mid]['year'] = master.find('year').text
+        masters[mid]['main_release'] = int(master.find('main_release').text)
+        masters[mid]['year'] = int(master.find('year').text)
         masters[mid]['title'] = master.find('title').text
         masters[mid]['data_quality'] = master.find('data_quality').text
         if artists := master.find('artists'):
@@ -47,9 +47,8 @@ if __name__ == '__main__':
     parser.add_argument('-m', dest='xml_masters_fn', required=True,
                         help='a file like discogs_20210601_masters.xml')
     args = parser.parse_args()
-    
+
     masters = masters_xml_to_obj(load_xml_file(args.xml_masters_fn))
     json_masters_fn = f'{splitext(args.xml_masters_fn)[0]}.json'
     with open(json_masters_fn, 'w') as f:
         json.dump(masters, f)
-    
