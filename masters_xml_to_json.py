@@ -1,4 +1,5 @@
 import argparse
+from sys import stdout
 from os.path import splitext
 import xml.etree.ElementTree as ET
 import json
@@ -35,10 +36,11 @@ def masters_xml_to_obj(root):
 
 
 def load_xml_file(fn):
-    print('loading', fn)
+    print(f'loading {fn}... ', end='')
+    stdout.flush()
     tree = ET.parse(fn)
     root = tree.getroot()
-    print('loading complete')
+    print('done')
     return root
 
 
@@ -50,5 +52,8 @@ if __name__ == '__main__':
 
     masters = masters_xml_to_obj(load_xml_file(args.xml_masters_fn))
     json_masters_fn = f'{splitext(args.xml_masters_fn)[0]}.json'
+    print(f'writing {json_masters_fn}... ', end='')
+    stdout.flush()
     with open(json_masters_fn, 'w') as f:
         json.dump(masters, f)
+    print('done')

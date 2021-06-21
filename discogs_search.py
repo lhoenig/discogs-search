@@ -28,17 +28,17 @@ if __name__ == '__main__':
                         choices=['json', 'json_file', 'short', 'links', 'none'])
     args = parser.parse_args()
 
-    print('loading masters json...', end='')
+    print('loading masters json... ', end='')
     stdout.flush()
     with open(args.json_fn, 'r') as f:
         masters = json.load(f)
-    print(f'done. {len(masters)} masters.')
+    print(f'done\n{len(masters)} masters loaded')
 
     print(
-        f'filtering: styles {args.styles}, {args.min_year} <= year <= {args.max_year}')
+        f'filtering:\n  styles: {", ".join(args.styles)}\n  year:   {args.min_year} <= year <= {args.max_year}')
     results = filter_masters(masters, set(args.styles),
                              args.min_year, args.max_year)
-    print(f'results: {len(results)}')
+    print(f'result: {len(results)} masters')
 
     if args.outf == 'json':
         pprint(results)
