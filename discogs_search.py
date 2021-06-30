@@ -27,7 +27,7 @@ if __name__ == '__main__':
     parser.add_argument('--min-year', dest='min_year',
                         type=int, default=0, help='minimum release year')
     parser.add_argument('--max-year', dest='max_year',
-                        type=int, default=9999, help='maxmimum release year')
+                        type=int, default=9999, help='maximum release year')
     parser.add_argument('--styles', nargs='+',
                         default=['Deep House', 'Downtempo'])
     parser.add_argument('-a', '--action', dest='results_action', default='json_file',
@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
     print(
         f'filter:\n  styles: {t.bold_cyan(", ".join(args.styles))}\n  year:   '
-        f'{t.bold_cyan(str(args.min_year) + " <= year <= " + str(args.max_year))}')
+        f'{t.bold_cyan(str(args.min_year) + "-" + str(args.max_year))}')
     results = filter_masters(masters, set(args.styles),
                              args.min_year, args.max_year)
     print(f'result: {t.bold_green(str(len(results)))} masters')
