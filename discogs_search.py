@@ -71,7 +71,7 @@ if __name__ == '__main__':
         results_list.sort(key=lambda l: l['year'])
         for r in results_list:
             print(f'{", ".join(a["name"] for a in r["artists"])} - '
-                f'{r["title"]} ({r["year"]}) [https://discogs.com/master/{r["id"]}]')
+                  f'{r["title"]} ({r["year"]}) [https://discogs.com/master/{r["id"]}]')
 
     def get_all_yt_links():
         video_links = []
